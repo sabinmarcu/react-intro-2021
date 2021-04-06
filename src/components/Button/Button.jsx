@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
-import LoadingIcon from 'mdi-react/LoadingIcon';
+import { Loading } from '../Loading';
 import styles from './Button.module.css';
 
 const validColors = ['primary', 'secondary', 'default'];
@@ -41,7 +41,7 @@ export const Button = ({
     >
       {variant !== 'raised' && !disabled && <div className={styles.background} />}
       {variant === 'outlined' && <div className={styles.outline} />}
-      {loading ? <LoadingIcon className={styles.loading} /> : children}
+      {loading ? <Loading /> : children}
       {variant === 'raised' && <div className={styles.overlay} />}
     </RenderComponent>
   );

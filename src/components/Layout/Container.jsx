@@ -17,9 +17,9 @@ export const Container = ({
       className,
       styles.container,
       validDirections.includes(direction) && styles[direction],
+      center && styles.center,
       wrap && styles.wrap,
       split && styles.split,
-      center && styles.center,
     ].filter(Boolean).join(' ')}
   >
     {children}

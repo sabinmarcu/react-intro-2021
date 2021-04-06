@@ -64,7 +64,7 @@ const DeleteButton = ({ id }) => {
 export const MoviePreviewPage = ({
   data,
 }) => (
-  <Container>
+  <Container center>
     <MoviePreview
       movie={data}
       full

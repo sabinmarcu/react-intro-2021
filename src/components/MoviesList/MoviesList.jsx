@@ -1,6 +1,5 @@
-import { Card, CardHeader } from '../Card';
-import { Container } from '../Layout';
 import { Movie, MoviePreview } from '../MoviePreview';
+import { Loading } from '../Loading';
 
 export const MoviesList = ({
   list,
@@ -12,30 +11,26 @@ export const MoviesList = ({
 }) => {
   if (isLoading) {
     return (
-      <Card>
-        <CardHeader title="Loading..." />
-      </Card>
+      <div>
+        <Loading style={{ width: 100, height: 100 }} />
+      </div>
     );
   }
 
   if (error) {
     return (
-      <Card>
-        <CardHeader title="Error" subtitle={error.message} />
-      </Card>
+      <h1>{error.message}</h1>
     );
   }
 
   if (isLoaded && (!movies || (Array.isArray(movies) && movies.length === 0))) {
     return (
-      <Card>
-        <CardHeader title="Error" subtitle="No data" />
-      </Card>
+      <h1>Something went wrong. Couldn&apos;t find any data.</h1>
     );
   }
 
   return (
-    <Container direction="horizontal" wrap>
+    <>
       {list.map(
         ({ id, ...rest }) => (
           <Movie
@@ -53,7 +48,7 @@ export const MoviesList = ({
           </Movie>
         ),
       )}
-    </Container>
+    </>
   );
 };
 

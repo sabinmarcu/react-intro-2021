@@ -108,22 +108,12 @@
 
 /* Icon Button */
 
+.icon {
+  padding: 6px;
+}
+
 .icon,
 .icon .background, 
 .icon .outline {
   border-radius: 100%;
-}
-
-.loading {
-  animation: loadingSpinner 1s linear infinite;
-}
-
-@keyframes loadingSpinner {
-  0% {
-    transform: rotate(0deg)
-  }
-
-  100% {
-    transform: rotate(360deg)
-  }
 }

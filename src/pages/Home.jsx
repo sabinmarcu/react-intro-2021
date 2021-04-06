@@ -61,15 +61,21 @@ export const HomePage = ({
           <RefreshIcon />
         </Button>
       </Container>
-      <MoviesList {...{
-        isLoading,
-        error,
-        movies,
-        isLoaded,
-        list: moviesIds,
-        onItemClick: onClick,
-      }}
-      />
+      <Container
+        direction="horizontal"
+        wrap
+        center={isLoading}
+      >
+        <MoviesList {...{
+          isLoading,
+          error,
+          movies,
+          isLoaded,
+          list: moviesIds,
+          onItemClick: onClick,
+        }}
+        />
+      </Container>
     </>
   );
 };
