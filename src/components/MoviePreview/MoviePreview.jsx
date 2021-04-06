@@ -58,7 +58,6 @@ export const MoviePreview = ({
 export const Movie = ({
   id,
   children,
-  ...rest
 }) => {
   const url = useMemo(
     () => `http://localhost:4000/movies/${id}`,
@@ -97,9 +96,7 @@ export const Movie = ({
       </Card>
     );
   }
-  return children
-    ? children(movie)
-    : <MoviePreview {...rest} movie={movie} update={update} />;
+  return children(movie, update);
 };
 
 export default MoviePreview;

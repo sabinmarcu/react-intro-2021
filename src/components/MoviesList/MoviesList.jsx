@@ -1,6 +1,6 @@
 import { Card, CardHeader } from '../Card';
 import { Container } from '../Layout';
-import { Movie } from '../MoviePreview';
+import { Movie, MoviePreview } from '../MoviePreview';
 
 export const MoviesList = ({
   list,
@@ -41,9 +41,16 @@ export const MoviesList = ({
           <Movie
             key={id}
             id={id}
-            onClick={onItemClick(id)}
-            {...rest}
-          />
+          >
+            {(movie, update) => (
+              <MoviePreview
+                {...rest}
+                movie={movie}
+                update={update}
+                onClick={onItemClick(id)}
+              />
+            )}
+          </Movie>
         ),
       )}
     </Container>
