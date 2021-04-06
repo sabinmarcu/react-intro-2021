@@ -3,6 +3,7 @@ import styles from './CardContent.module.css';
 export const CardContent = ({
   children,
   className,
+  center,
   ...rest
 }) => (
   <div
@@ -10,6 +11,7 @@ export const CardContent = ({
     className={[
       className,
       styles.cardContent,
+      center && styles.center,
     ].filter(Boolean).join(' ')}
   >
     {children}

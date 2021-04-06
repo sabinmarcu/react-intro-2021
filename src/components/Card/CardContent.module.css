@@ -4,3 +4,10 @@
     padding: var(--padding);
     line-height: 1.3em;
 }
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column nowrap;
+}

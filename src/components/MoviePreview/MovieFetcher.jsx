@@ -1,5 +1,6 @@
 import { Redirect } from 'react-router';
 import { useMemo } from 'react';
+import RefreshIcon from 'mdi-react/RefreshIcon';
 import { ResponseError, useFetch } from '../../hooks/useFetch';
 import {
   Card,
@@ -9,9 +10,22 @@ import {
 } from '../Card';
 import { Skeleton } from '../Skeleton';
 
+const ErrorCard = ({ update, message }) => (
+  <Card onClick={update}>
+    <CardHeader title="Error" subtitle="Please click here to retry" />
+    <CardContent center>
+      <RefreshIcon style={{ width: 50, height: 50 }} />
+    </CardContent>
+    <CardContent>
+      <p>{message}</p>
+    </CardContent>
+  </Card>
+);
+
 export const MovieFetcher = ({
   id,
   children,
+  redirect = true,
 }) => {
   const url = useMemo(
     () => `http://localhost:4000/movies/${id}`,
@@ -38,23 +52,18 @@ export const MovieFetcher = ({
     );
   }
   if (error) {
-    if (error instanceof ResponseError && error.code === 404) {
+    if (redirect
+        && error instanceof ResponseError
+        && error.code === 404
+    ) {
       return (
         <Redirect to="/" />
       );
     }
-    return (
-      <Card>
-        <CardHeader title="Error" subtitle={error.message} />
-      </Card>
-    );
+    return (<ErrorCard update={update} message={error.message} />);
   }
   if (isLoaded && !movie) {
-    return (
-      <Card>
-        <CardHeader title="Error" subtitle="No data" />
-      </Card>
-    );
+    return (<ErrorCard update={update} message="No Data" />);
   }
   return children({
     movie,
