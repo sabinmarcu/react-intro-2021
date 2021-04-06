@@ -27,8 +27,8 @@ export const Filter = ({
   </label>
 );
 
-export const useFilter = () => {
-  const [filter, setFilter] = useState('');
+export const useFilter = (defaultValue = '') => {
+  const [filter, setFilter] = useState(defaultValue);
   const onChange = useCallback(
     ({ target: { value } }) => {
       setFilter(value);
