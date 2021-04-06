@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
+import LoadingIcon from 'mdi-react/LoadingIcon';
 import styles from './Button.module.css';
 
 const validColors = ['primary', 'secondary', 'default'];
@@ -12,6 +13,7 @@ export const Button = ({
   variant = 'default',
   to,
   disabled,
+  loading,
   ...rest
 }) => {
   const isIcon = useMemo(
@@ -35,11 +37,11 @@ export const Button = ({
         validColors.includes(color) && styles[color],
         isIcon && styles.icon,
       ].filter(Boolean).join(' ')}
-      disabled={disabled}
+      disabled={disabled || loading}
     >
       {variant !== 'raised' && !disabled && <div className={styles.background} />}
       {variant === 'outlined' && <div className={styles.outline} />}
-      {children}
+      {loading ? <LoadingIcon className={styles.loading} /> : children}
       {variant === 'raised' && <div className={styles.overlay} />}
     </RenderComponent>
   );

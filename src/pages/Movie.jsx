@@ -53,10 +53,10 @@ const DeleteButton = ({ id }) => {
     <Button
       variant="outlined"
       color="secondary"
-      disabled={isLoading}
+      loading={isLoading}
       onClick={deleteHandler}
     >
-      {(isLoading && 'Loading') || errorMessage || 'Delete'}
+      {errorMessage || 'Delete'}
     </Button>
   );
 };
