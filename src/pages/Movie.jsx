@@ -1,6 +1,7 @@
 import { Route, Switch } from 'react-router';
 import { Movie } from '../components/MoviePreview';
-import { MoviePreviewPage } from './MoviePreview';
+import { MoviePreviewPage } from './MoviePreviewPage';
+import { MovieEditPage } from './MovieEditPage';
 
 export const MoviePage = ({
   match: {
@@ -14,6 +15,9 @@ export const MoviePage = ({
       <Switch>
         <Route exact path="/movie/:id">
           <MoviePreviewPage data={movieData} />
+        </Route>
+        <Route exact path="/movie/:id/edit">
+          <MovieEditPage data={movieData} />
         </Route>
       </Switch>
     )}
