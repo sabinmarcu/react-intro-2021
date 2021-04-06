@@ -10,7 +10,10 @@ export const useSearch = () => {
       .split('&')
       .map((it) => it.split('='))
       .reduce(
-        (prev, [key, value]) => ({ ...prev, [key]: value }),
+        (prev, [key, value]) => ({
+          ...prev,
+          [key]: decodeURIComponent(value),
+        }),
         {},
       ),
     [location],
@@ -25,7 +28,7 @@ export const useSearch = () => {
         pathname: location.pathname,
         search: Object.entries(newParams)
           .filter(([k, v]) => k && v)
-          .map((set) => set.join('='))
+          .map(([k, v]) => [k, encodeURIComponent(v)].join('='))
           .join('&'),
       });
     },
