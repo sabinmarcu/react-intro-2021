@@ -7,24 +7,36 @@ export const Input = ({
   label,
   className,
   value,
+  isValid,
+  errors,
   ...rest
 }) => (
-  <label
-    htmlFor={id}
-    className={[
-      className,
-      styles.wrapper,
-      value && styles.active,
-    ].filter(Boolean).join(' ')}
-  >
-    <input
-      value={value}
-      className={styles.input}
-      {...rest}
-      id={id}
-    />
-    <span className={styles.label}>{label}</span>
-  </label>
+  <>
+    <label
+      htmlFor={id}
+      className={[
+        className,
+        styles.wrapper,
+        value && styles.active,
+        !isValid && styles.error,
+      ].filter(Boolean).join(' ')}
+    >
+      <input
+        value={value}
+        className={styles.input}
+        {...rest}
+        id={id}
+      />
+      <span className={styles.label}>{label}</span>
+      {!isValid && (
+        <div className={styles.errorList}>
+          {errors.map((error) => (
+            <p>{error}</p>
+          ))}
+        </div>
+      )}
+    </label>
+  </>
 );
 
 export const isRequired = (value) => (!value
