@@ -9,7 +9,7 @@ export const MoviePage = ({
   },
 }) => (
   <Container>
-    <Movie id={id} />
+    <Movie id={id} full />
   </Container>
 );
 export default MoviePage;

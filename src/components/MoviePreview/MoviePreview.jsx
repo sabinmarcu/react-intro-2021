@@ -21,6 +21,7 @@ export const MoviePreview = ({
   } = {},
   update,
   onClick,
+  full,
 }) => {
   const onUpdate = useMemo(
     () => (update
@@ -38,7 +39,7 @@ export const MoviePreview = ({
         subtitle={`${year} (${genre})`}
       />
       <CardMedia src={poster} alt={title} />
-      <CardContent>{plot}</CardContent>
+      {full && <CardContent>{plot}</CardContent>}
       {update && (
         <CardActions>
           <span />
