@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import RefreshIcon from 'mdi-react/RefreshIcon';
-import { useFetch } from '../../hooks/useFetch';
+import { Redirect } from 'react-router';
+import { ResponseError, useFetch } from '../../hooks/useFetch';
 import {
   Card,
   CardActions,
@@ -73,6 +74,11 @@ export const Movie = ({
     );
   }
   if (error) {
+    if (error instanceof ResponseError && error.code === 404) {
+      return (
+        <Redirect to="/" />
+      );
+    }
     return (
       <Card>
         <CardHeader title="Error" subtitle={error.message} />

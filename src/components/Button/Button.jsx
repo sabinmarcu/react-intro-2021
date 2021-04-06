@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { NavLink } from 'react-router-dom';
 import styles from './Button.module.css';
 
 const validColors = ['primary', 'secondary', 'default'];
@@ -9,6 +10,7 @@ export const Button = ({
   className,
   color = 'default',
   variant = 'default',
+  to,
   disabled,
   ...rest
 }) => {
@@ -16,9 +18,16 @@ export const Button = ({
     () => !Array.isArray(children) && children.type && children.type.type && children.type.type.name.endsWith('Icon'),
     [children],
   );
+  const RenderComponent = useMemo(
+    () => (to
+      ? NavLink
+      : 'button'),
+    [to],
+  );
   return (
-    <button
+    <RenderComponent
       {...rest}
+      to={to}
       className={[
         className,
         styles.button,
@@ -32,7 +41,7 @@ export const Button = ({
       {variant === 'outlined' && <div className={styles.outline} />}
       {children}
       {variant === 'raised' && <div className={styles.overlay} />}
-    </button>
+    </RenderComponent>
   );
 };
 

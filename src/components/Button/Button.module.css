@@ -16,6 +16,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
+}
+
+.button:global(.active) {
+  color: var(--color-primary);
 }
 
 .button:not(:disabled) {

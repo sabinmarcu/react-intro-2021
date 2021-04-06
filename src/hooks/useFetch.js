@@ -6,6 +6,13 @@ import {
 } from 'react';
 import debounceFactory from 'debounce';
 
+export class ResponseError extends Error {
+  constructor(response) {
+    super(`${response.statusText} (${response.status})`);
+    this.code = response.status;
+  }
+}
+
 export const useFetch = (
   url,
   {
@@ -27,7 +34,7 @@ export const useFetch = (
       try {
         const response = await fetch(url);
         if (!response.ok) {
-          throw new Error(`${response.statusText} (${response.status})`);
+          throw new ResponseError(response);
         }
         setData(await response.json());
       } catch (err) {

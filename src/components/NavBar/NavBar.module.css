@@ -1,0 +1,22 @@
+.navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    background: var(--color-background);
+    transition: all var(--transition);
+}
+
+.scrolled { 
+    background: var(--color-paper);
+    box-shadow: var(--shadow-2);
+}
+
+.navbar > * {
+    flex: 1;
+}
