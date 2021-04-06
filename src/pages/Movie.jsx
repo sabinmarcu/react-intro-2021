@@ -22,7 +22,6 @@ export const MoviePage = ({
             <MovieEditPage data={movie} />
           </Route>
         </Switch>
-
       )}
     </MovieFetcher>
   </Container>

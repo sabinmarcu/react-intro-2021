@@ -38,7 +38,7 @@ export const MovieFetcher = ({
     isLoaded,
     update,
   } = useFetch(url, { autoload: true });
-  if (isLoading) {
+  if (isLoading || !(isLoading || isLoaded || error || movie)) {
     return (
       <Card>
         <CardHeader title={<Skeleton />} subtitle={<Skeleton />} />
