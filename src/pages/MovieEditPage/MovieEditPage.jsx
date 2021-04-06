@@ -16,6 +16,7 @@ import {
 import { Container } from '../../components/Layout';
 import { MoviePreview } from '../../components/MoviePreview';
 import { useField } from './core';
+import { SaveButton } from './SaveButton';
 
 export const MovieEditPage = ({
   data,
@@ -102,13 +103,11 @@ export const MovieEditPage = ({
           <Input {...posterProps} />
         </CardContent>
         <CardActions>
-          <Button
-            color="primary"
-            variant="raised"
-            disabled={!isValid || !hasChanged}
-          >
-            Save
-          </Button>
+          <SaveButton
+            id={data.id}
+            data={previewData}
+            {...{ isValid, hasChanged }}
+          />
           <Button
             color="secondary"
             variant="outlined"

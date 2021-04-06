@@ -19,6 +19,8 @@ export const useFetch = (
     autoload = false,
     debounce = undefined,
     method = 'GET',
+    body,
+    headers,
   } = {},
 ) => {
   const [data, setData] = useState(undefined);
@@ -33,7 +35,7 @@ export const useFetch = (
       setData(undefined);
       setError(undefined);
       try {
-        const response = await fetch(url, { method });
+        const response = await fetch(url, { method, body, headers });
         if (!response.ok) {
           throw new ResponseError(response);
         }
@@ -48,7 +50,7 @@ export const useFetch = (
         setIsLoaded(true);
       }
     },
-    [setData, setIsLoading, setIsLoaded, setError, url, method],
+    [setData, setIsLoading, setIsLoaded, setError, url, method, body, headers],
   );
 
   const debouncedUpdate = useMemo(

@@ -1,12 +1,14 @@
 import {
-  useCallback, useEffect, useMemo, useState,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
 } from 'react';
 import { useHistory } from 'react-router';
-import { Button } from '../components/Button';
-import { MoviePreview } from '../components/MoviePreview';
-import { useFetch } from '../hooks/useFetch';
+import { Button } from '../../components/Button';
+import { useFetch } from '../../hooks/useFetch';
 
-const DeleteButton = ({ id }) => {
+export const DeleteButton = ({ id }) => {
   const history = useHistory();
 
   const url = useMemo(
@@ -59,24 +61,4 @@ const DeleteButton = ({ id }) => {
   );
 };
 
-export const MoviePreviewPage = ({
-  data,
-}) => (
-  <MoviePreview
-    movie={data}
-    full
-    actions={(
-      <>
-        <Button
-          variant="raised"
-          color="primary"
-          to={`/movie/${data && data.id}/edit`}
-        >
-          Edit
-        </Button>
-        <DeleteButton id={data && data.id} />
-      </>
-      )}
-  />
-);
-export default MoviePreviewPage;
+export default DeleteButton;
