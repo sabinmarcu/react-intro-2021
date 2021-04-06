@@ -3,10 +3,8 @@ import {
 } from 'react';
 import { useHistory } from 'react-router';
 import { Button } from '../components/Button';
-import { Container } from '../components/Layout';
 import { MoviePreview } from '../components/MoviePreview';
 import { useFetch } from '../hooks/useFetch';
-// import LoadingIcon from 'mdi-react/LoadingIcon';
 
 const DeleteButton = ({ id }) => {
   const history = useHistory();
@@ -64,23 +62,21 @@ const DeleteButton = ({ id }) => {
 export const MoviePreviewPage = ({
   data,
 }) => (
-  <Container center>
-    <MoviePreview
-      movie={data}
-      full
-      actions={(
-        <>
-          <Button
-            variant="raised"
-            color="primary"
-            to={`/movie/${data && data.id}/edit`}
-          >
-            Edit
-          </Button>
-          <DeleteButton id={data && data.id} />
-        </>
+  <MoviePreview
+    movie={data}
+    full
+    actions={(
+      <>
+        <Button
+          variant="raised"
+          color="primary"
+          to={`/movie/${data && data.id}/edit`}
+        >
+          Edit
+        </Button>
+        <DeleteButton id={data && data.id} />
+      </>
       )}
-    />
-  </Container>
+  />
 );
 export default MoviePreviewPage;

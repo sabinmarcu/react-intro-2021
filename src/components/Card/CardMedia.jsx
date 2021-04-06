@@ -4,17 +4,23 @@ export const CardMedia = ({
   src,
   alt,
   className,
+  children,
   ...rest
 }) => (
-  <img
-    {...rest}
-    src={src}
-    alt={alt}
-    className={[
-      className,
-      styles.img,
-    ].filter(Boolean).join(' ')}
-  />
+  <div className={[
+    className,
+    styles.wrapper,
+  ].filter(Boolean).join(' ')}
+  >
+    {children || (
+      <img
+        {...rest}
+        className={styles.img}
+        src={src}
+        alt={alt}
+      />
+    )}
+  </div>
 );
 
 export default CardMedia;

@@ -17,7 +17,7 @@ body, body.light {
   --color-background: #fff;
   --color-background-gray: #ccc; 
   --color-background-contrast: #424242;
-  --color-paper: #fafafa;
+  --color-paper: #f0f0f0;
 }
 
 body.dark {
@@ -25,6 +25,6 @@ body.dark {
   --color-text-contrast: #000;
   --color-background: #303030;
   --color-background-gray: #666;
-  --color-background-contrasts: #fafafa;
+  --color-background-contrasts: #f0f0f0;
   --color-paper: #424242;
 }

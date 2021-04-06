@@ -1,4 +1,4 @@
-import { Movie, MoviePreview } from '../MoviePreview';
+import { MovieFetcher, MoviePreview } from '../MoviePreview';
 import { Loading } from '../Loading';
 
 export const MoviesList = ({
@@ -33,11 +33,11 @@ export const MoviesList = ({
     <>
       {list.map(
         ({ id, ...rest }) => (
-          <Movie
+          <MovieFetcher
             key={id}
             id={id}
           >
-            {(movie, update) => (
+            {({ movie, update }) => (
               <MoviePreview
                 {...rest}
                 movie={movie}
@@ -45,7 +45,7 @@ export const MoviesList = ({
                 onClick={onItemClick(id)}
               />
             )}
-          </Movie>
+          </MovieFetcher>
         ),
       )}
     </>

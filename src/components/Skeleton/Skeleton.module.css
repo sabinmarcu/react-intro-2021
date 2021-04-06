@@ -1,0 +1,32 @@
+.skeleton {
+    color: transparent;
+    margin: 1px 0;
+    height: 100%;
+    width: 100%;
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: var(--color-background);
+}
+
+.skeleton::after {
+    content: "";
+    animation: gradientAnimation 2s linear infinite;
+    background: linear-gradient(to right, transparent, transparent, var(--color-paper), transparent, transparent);
+    border: solid 1px var(--color-background);
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    transform: translateX(0);
+}
+
+@keyframes gradientAnimation {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%)
+    }
+}

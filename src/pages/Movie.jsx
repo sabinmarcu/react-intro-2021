@@ -1,7 +1,8 @@
 import { Route, Switch } from 'react-router';
-import { Movie } from '../components/MoviePreview';
+import { MovieFetcher } from '../components/MoviePreview';
 import { MoviePreviewPage } from './MoviePreviewPage';
 import { MovieEditPage } from './MovieEditPage';
+import { Container } from '../components/Layout';
 
 export const MoviePage = ({
   match: {
@@ -10,17 +11,20 @@ export const MoviePage = ({
     },
   },
 }) => (
-  <Movie id={id}>
-    {(movieData) => (
-      <Switch>
-        <Route exact path="/movie/:id">
-          <MoviePreviewPage data={movieData} />
-        </Route>
-        <Route exact path="/movie/:id/edit">
-          <MovieEditPage data={movieData} />
-        </Route>
-      </Switch>
-    )}
-  </Movie>
+  <Container center>
+    <MovieFetcher id={id}>
+      {({ movie }) => (
+        <Switch>
+          <Route exact path="/movie/:id">
+            <MoviePreviewPage data={movie} />
+          </Route>
+          <Route exact path="/movie/:id/edit">
+            <MovieEditPage data={movie} />
+          </Route>
+        </Switch>
+
+      )}
+    </MovieFetcher>
+  </Container>
 );
 export default MoviePage;
