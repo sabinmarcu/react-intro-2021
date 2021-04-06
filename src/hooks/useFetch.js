@@ -18,6 +18,7 @@ export const useFetch = (
   {
     autoload = false,
     debounce = undefined,
+    method = 'GET',
   } = {},
 ) => {
   const [data, setData] = useState(undefined);
@@ -32,19 +33,22 @@ export const useFetch = (
       setData(undefined);
       setError(undefined);
       try {
-        const response = await fetch(url);
+        const response = await fetch(url, { method });
         if (!response.ok) {
           throw new ResponseError(response);
         }
-        setData(await response.json());
+        const newData = await response.json();
+        setData(newData);
+        return newData;
       } catch (err) {
         setError(err);
+        throw err;
       } finally {
         setIsLoading(false);
         setIsLoaded(true);
       }
     },
-    [setData, setIsLoading, setIsLoaded, setError, url],
+    [setData, setIsLoading, setIsLoaded, setError, url, method],
   );
 
   const debouncedUpdate = useMemo(

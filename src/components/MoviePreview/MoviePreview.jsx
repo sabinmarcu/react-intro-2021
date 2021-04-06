@@ -22,6 +22,7 @@ export const MoviePreview = ({
   update,
   onClick,
   full,
+  children,
 }) => {
   const onUpdate = useMemo(
     () => (update
@@ -42,7 +43,7 @@ export const MoviePreview = ({
       {full && <CardContent>{plot}</CardContent>}
       {update && (
         <CardActions>
-          <span />
+          {children || <span />}
           <Button onClick={onUpdate}>
             <RefreshIcon />
           </Button>
