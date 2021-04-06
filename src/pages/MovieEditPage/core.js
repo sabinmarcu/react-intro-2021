@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 export const useField = (data, fields = {}) => {
   const previewData = useMemo(
@@ -29,11 +29,17 @@ export const useField = (data, fields = {}) => {
       .reduce((prev, field) => prev || field.hasChanged, false),
     [fields],
   );
+  const reset = useCallback(
+    () => Object.values(fields)
+      .forEach((field) => field.reset()),
+    [fields],
+  );
   return {
     previewData,
     isDirty,
     isValid,
     hasChanged,
+    reset,
   };
 };
 

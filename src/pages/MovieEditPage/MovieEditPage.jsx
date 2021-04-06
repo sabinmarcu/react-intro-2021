@@ -84,6 +84,7 @@ export const MovieEditPage = ({
     isDirty,
     isValid,
     hasChanged,
+    reset,
   } = useField(
     data,
     fieldSet,
@@ -112,6 +113,7 @@ export const MovieEditPage = ({
             color="secondary"
             variant="outlined"
             disabled={!isDirty}
+            onClick={reset}
           >
             Clear
           </Button>

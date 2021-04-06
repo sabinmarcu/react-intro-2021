@@ -71,6 +71,13 @@ export const useInput = (
     () => value !== defaultValue,
     [value, defaultValue],
   );
+  const reset = useCallback(
+    () => {
+      setValue(defaultValue);
+      setIsDirty(false);
+    },
+    [setValue, setIsDirty],
+  );
   return {
     value,
     isDirty,
@@ -78,6 +85,7 @@ export const useInput = (
     onChange,
     isValid,
     hasChanged,
+    reset,
     ...props,
   };
 };
