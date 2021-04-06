@@ -1,5 +1,5 @@
 import { Redirect } from 'react-router';
-import { useMemo } from 'react';
+import { createContext, useContext, useMemo } from 'react';
 import RefreshIcon from 'mdi-react/RefreshIcon';
 import { ResponseError, useFetch } from '../../hooks/useFetch';
 import {
@@ -22,9 +22,13 @@ const ErrorCard = ({ update, message }) => (
   </Card>
 );
 
+export const MovieFetcherContext = createContext();
+export const useMovieFetcher = () => useContext(MovieFetcherContext);
+
 export const MovieFetcher = ({
   id,
   children,
+  autoload = true,
   redirect = true,
 }) => {
   const url = useMemo(
@@ -37,7 +41,7 @@ export const MovieFetcher = ({
     isLoading,
     isLoaded,
     update,
-  } = useFetch(url, { autoload: true });
+  } = useFetch(url, { autoload });
   if (isLoading || !(isLoading || isLoaded || error || movie)) {
     return (
       <Card>
@@ -65,13 +69,26 @@ export const MovieFetcher = ({
   if (isLoaded && !movie) {
     return (<ErrorCard update={update} message="No Data" />);
   }
-  return children({
-    movie,
-    update,
-    isLoaded,
-    isLoading,
-    error,
-  });
+  return (
+    <MovieFetcherContext.Provider value={{
+      movie,
+      update,
+      isLoaded,
+      isLoading,
+      error,
+    }}
+    >
+      {
+        children({
+          movie,
+          update,
+          isLoaded,
+          isLoading,
+          error,
+        })
+    }
+    </MovieFetcherContext.Provider>
+  );
 };
 
 export default MovieFetcher;

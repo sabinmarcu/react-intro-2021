@@ -6,6 +6,7 @@ import {
 } from 'react';
 import { useHistory } from 'react-router';
 import { Button } from '../../components/Button';
+import { useMovieFetcher } from '../../components/MoviePreview';
 import { useFetch } from '../../hooks/useFetch';
 
 export const SaveButton = ({
@@ -36,6 +37,7 @@ export const SaveButton = ({
       body: JSON.stringify(data),
     },
   );
+  const { update: movieFetcherUpdate } = useMovieFetcher();
 
   const [errorMessage, setErrorMessage] = useState(undefined);
   useEffect(
@@ -56,10 +58,11 @@ export const SaveButton = ({
       ) {
         setErrorMessage(undefined);
         await update();
+        await movieFetcherUpdate();
         history.push(`/movie/${id}`);
       }
     },
-    [update, isLoading, history, setErrorMessage, isValid, hasChanged],
+    [update, isLoading, history, setErrorMessage, isValid, hasChanged, movieFetcherUpdate],
   );
 
   return (

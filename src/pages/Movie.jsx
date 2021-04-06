@@ -1,7 +1,7 @@
 import { Route, Switch } from 'react-router';
 import { MovieFetcher } from '../components/MoviePreview';
-import { MoviePreviewPage } from './MoviePreviewPage';
-import { MovieEditPage } from './MovieEditPage';
+import { MoviePreviewPage } from './MoviePreviewPage/MoviePreviewPage';
+import { MovieEditPage } from './MovieEditPage/MovieEditPage';
 import { Container } from '../components/Layout';
 
 export const MoviePage = ({
