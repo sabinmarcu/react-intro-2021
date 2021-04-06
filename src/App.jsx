@@ -4,6 +4,8 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
+import HomeIcon from 'mdi-react/HomeIcon';
+import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon';
 import { BackButton } from './components/BackButton';
 import { Button } from './components/Button';
 import { Container } from './components/Layout';
@@ -22,8 +24,12 @@ function App() {
           <NavBar>
             <Container direction="horizontal" split>
               <div>
-                <Button exact to="/">Home</Button>
-                <BackButton>Back</BackButton>
+                <BackButton>
+                  <ArrowLeftIcon />
+                </BackButton>
+                <Button exact to="/">
+                  <HomeIcon />
+                </Button>
               </div>
               <ThemeToggleButton />
             </Container>
@@ -31,6 +37,7 @@ function App() {
           <Container direction="vertical">
             <Switch>
               <Route exact path="/movie/:id" component={MoviePage} />
+              <Route exact path="/movie/:id/edit" component={MoviePage} />
               <Route path="/movie">
                 <Redirect to="/" />
               </Route>

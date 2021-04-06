@@ -22,7 +22,7 @@ export const MoviePreview = ({
   update,
   onClick,
   full,
-  children,
+  actions,
 }) => {
   const onUpdate = useMemo(
     () => (update
@@ -41,12 +41,14 @@ export const MoviePreview = ({
       />
       <CardMedia src={poster} alt={title} />
       {full && <CardContent>{plot}</CardContent>}
-      {update && (
+      {(actions || update) && (
         <CardActions>
-          {children || <span />}
-          <Button onClick={onUpdate}>
-            <RefreshIcon />
-          </Button>
+          {actions || <span />}
+          {update && (
+            <Button onClick={onUpdate}>
+              <RefreshIcon />
+            </Button>
+          )}
         </CardActions>
       )}
     </Card>
@@ -55,6 +57,7 @@ export const MoviePreview = ({
 
 export const Movie = ({
   id,
+  children,
   ...rest
 }) => {
   const url = useMemo(
@@ -94,7 +97,9 @@ export const Movie = ({
       </Card>
     );
   }
-  return <MoviePreview {...rest} movie={movie} update={update} />;
+  return children
+    ? children(movie)
+    : <MoviePreview {...rest} movie={movie} update={update} />;
 };
 
 export default MoviePreview;
