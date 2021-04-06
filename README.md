@@ -32,6 +32,20 @@ Taken from: [https://gist.githubusercontent.com/sabinmarcu/f2e2a68ff36528965792e
 
 - react-measure [https://www.npmjs.com/package/react-measure](https://www.npmjs.com/package/react-measure)
 
+## Tips
+
+If webpack/eslint are acting up (can't find file when it's obviously there), usually after a rename, do:
+
+```
+$ rm -rf node_modules/.cache 
+
+or 
+
+$ rmdir node_modules/.cache
+```
+
+or the windows equivalent
+
 # Homework
 
 App / Navigation bar on the top of the page to contain:

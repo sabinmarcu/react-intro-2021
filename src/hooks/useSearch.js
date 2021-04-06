@@ -24,6 +24,7 @@ export const useSearch = () => {
       history.push({
         pathname: location.pathname,
         search: Object.entries(newParams)
+          .filter(([k, v]) => k && v)
           .map((set) => set.join('='))
           .join('&'),
       });

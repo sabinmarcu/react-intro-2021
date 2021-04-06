@@ -1,5 +1,5 @@
 import RefreshIcon from 'mdi-react/RefreshIcon';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { Button } from '../components/Button';
 import { Filter, useFilter } from '../components/Filter';
 import { Container } from '../components/Layout';
@@ -15,16 +15,8 @@ export const HomePage = ({
     push,
   },
 }) => {
-  const { params: search, update: updateSearch } = useSearch();
-  const { value: filter, ...filterProps } = useFilter(search.q);
-  useEffect(
-    () => {
-      if (search.q !== filter) {
-        updateSearch('q', filter);
-      }
-    },
-    [filter, updateSearch, search],
-  );
+  const filterProps = useFilter();
+  const { params: search } = useSearch();
 
   const url = useMemo(
     () => (search.q
@@ -63,7 +55,7 @@ export const HomePage = ({
           id="movies-filter"
           label="Filter Movies"
           className={styles.filter}
-          {...{ value: filter, ...filterProps }}
+          {...filterProps}
         />
         <Button onClick={update}>
           <RefreshIcon />
