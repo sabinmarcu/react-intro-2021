@@ -12,9 +12,21 @@
     transition: all var(--transition);
 }
 
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-background);
+}
+
 .scrolled { 
-    background: var(--color-paper);
     box-shadow: var(--shadow-2);
+}
+
+.scrolled .background {
+    background: var(--color-paper);
 }
 
 .navbar > * {
